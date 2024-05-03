@@ -40,6 +40,7 @@ class PluginController {
             "discoverServices" to this::discoverServices,
             "getDiscoveredServices" to this::discoverServices,
             "readRssi" to this::readRssi,
+            "autoPairDevice" to this::autoPairDevice,
         )
 
     private lateinit var bleClient: com.signify.hue.flutterreactiveble.ble.BleClient
@@ -387,5 +388,14 @@ class PluginController {
                 result.error("read_rssi_error", error.message, null)
             })
             .discard()
+    }
+    private fun autoPairDevice(
+        call: MethodCall,
+        result: Result,
+    ) {
+        val args = pb.AutoPairDeviceRequest.parseFrom(call.arguments as ByteArray)
+        val success = bleClient.autoPairDevice(args.deviceId, args.pin)
+        val res = protoConverter.convertAutoPairDeviceResult(success)
+        result.success(res.toByteArray())
     }
 }

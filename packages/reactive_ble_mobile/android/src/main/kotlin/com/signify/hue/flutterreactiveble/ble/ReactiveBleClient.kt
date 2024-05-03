@@ -1,5 +1,6 @@
 package com.signify.hue.flutterreactiveble.ble
 
+import android.annotation.SuppressLint
 import android.bluetooth.BluetoothDevice.BOND_BONDING
 import android.bluetooth.BluetoothGattCharacteristic
 import android.content.Context
@@ -404,4 +405,11 @@ open class ReactiveBleClient(private val context: Context) : BleClient {
                     .setShouldLogAttributeValues(true)
                     .build(),
             )
+
+    @SuppressLint("MissingPermission")
+    override fun autoPairDevice(deviceId: String, pin: String): Boolean {
+        val device = rxBleClient.getBleDevice(deviceId)
+        return device.bluetoothDevice.setPin(pin.toByteArray())
+    }
 }
+

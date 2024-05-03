@@ -27,6 +27,8 @@ class DeviceListScreen extends StatelessWidget {
       );
 }
 
+var _ble = FlutterReactiveBle();
+
 class _DeviceList extends StatefulWidget {
   const _DeviceList({
     required this.scannerState,
@@ -123,6 +125,10 @@ class _DeviceListState extends State<_DeviceList> {
                             ? widget.stopScan
                             : null,
                       ),
+                      ElevatedButton(
+                          child: const Text('Demo'),
+                          onPressed: () => _ble.autoPairDevice(
+                              'D3:96:42:AA:E1:A8', '828174'))
                     ],
                   ),
                 ],

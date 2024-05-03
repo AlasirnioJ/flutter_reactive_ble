@@ -149,9 +149,17 @@ message DiscoveredCharacteristic {
 message ReadRssiRequest {
     string deviceId = 1;
 }
+message AutoPairDeviceRequest {
+    string deviceId = 1;
+    string pin = 2;
+}
 
 message ReadRssiResult {
     int32 rssi = 1;
+}
+
+message AutoPairDeviceResult {
+    bool result = 1;
 }
 
 message Uuid {

@@ -191,6 +191,11 @@ class ProtobufMessageConverter {
             .setRssi(rssi)
             .build()
     }
+    fun convertAutoPairDeviceResult(success: Boolean): pb.AutoPairDeviceResult {
+        return pb.AutoPairDeviceResult.newBuilder()
+            .setResult(success)
+            .build()
+    }
 
     private fun fromBluetoothGattService(gattService: BluetoothGattService): pb.DiscoveredService {
         return pb.DiscoveredService.newBuilder()

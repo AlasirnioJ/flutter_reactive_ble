@@ -159,7 +159,6 @@ internal class DeviceConnector(
                     )
                 }
             }
-
     internal fun clearGattCache(): Completable =
         currentConnection?.let { connection ->
             when (connection) {
@@ -216,4 +215,5 @@ internal class DeviceConnector(
                 is EstablishConnectionFailure -> Single.error(Throwable(connection.errorMessage))
             }
         } ?: Single.error(IllegalStateException("Connection is not established"))
+        
 }

@@ -64,4 +64,5 @@ class DeviceConnectionHandler(private val bleClient: com.signify.hue.flutterreac
     private fun handleDeviceConnectionUpdateResult(connectionUpdateMessage: pb.DeviceInfo) {
         connectDeviceSink?.success(connectionUpdateMessage.toByteArray())
     }
+    
 }
