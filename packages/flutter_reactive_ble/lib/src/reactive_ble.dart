@@ -225,7 +225,8 @@ class FlutterReactiveBle {
     return _connectedDeviceOperator.requestMtuDemo(deviceId, mtu);
   }
 
-  Future<bool> autoPairDevice(String deviceId, String pin) async {
+  Future<bool> autoPairDevice(
+      {required String deviceId, required String pin}) async {
     await initialize();
     var res = await _blePlatform.autoPairDevice(deviceId, pin);
     print(res.toString());

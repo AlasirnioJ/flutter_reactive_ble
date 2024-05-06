@@ -69,6 +69,14 @@ class DeviceInteractionViewModel extends $DeviceInteractionViewModel {
   void disconnect() {
     deviceConnector.disconnect(deviceId);
   }
+
+  void readStatus() {
+    deviceConnector.readStatus(deviceId);
+  }
+
+  void autoPair(String pin) {
+    final result = deviceConnector.autoPairDevice(deviceId, pin);
+  }
 }
 
 class _DeviceInteractionTab extends StatefulWidget {
@@ -171,6 +179,16 @@ class _DeviceInteractionTabState extends State<_DeviceInteractionTab> {
                             widget.viewModel.deviceConnected ? readRssi : null,
                         child: const Text("Get RSSI"),
                       ),
+                      ElevatedButton(
+                          onPressed: widget.viewModel.deviceConnected
+                              ? widget.viewModel.readStatus
+                              : null,
+                          child: const Text("Read status")),
+                      ElevatedButton(
+                          onPressed: widget.viewModel.deviceConnected
+                              ? () => widget.viewModel.autoPair('828174')
+                              : null,
+                          child: const Text("Auto pair")),
                     ],
                   ),
                 ),

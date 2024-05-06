@@ -125,10 +125,10 @@ class _DeviceListState extends State<_DeviceList> {
                             ? widget.stopScan
                             : null,
                       ),
-                      ElevatedButton(
+                      /*   ElevatedButton(
                           child: const Text('Demo'),
                           onPressed: () => _ble.autoPairDevice(
-                              'D3:96:42:AA:E1:A8', '828174'))
+                              'D3:96:42:AA:E1:A8', '828174')) */
                     ],
                   ),
                 ],
