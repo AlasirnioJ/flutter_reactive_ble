@@ -123,6 +123,7 @@ class ReactiveBleMobilePlatform extends ReactiveBlePlatform {
     String id,
     Map<Uuid, List<Uuid>>? servicesWithCharacteristicsToDiscover,
     Duration? connectionTimeout,
+    String? pin,
   ) {
     _logger?.log(
       'Connect to device: $id, servicesWithCharacteristicsToDiscover: $servicesWithCharacteristicsToDiscover, timeout: $connectionTimeout',
@@ -135,6 +136,7 @@ class ReactiveBleMobilePlatform extends ReactiveBlePlatform {
                 id,
                 servicesWithCharacteristicsToDiscover,
                 connectionTimeout,
+                pin,
               )
               .writeToBuffer(),
         )

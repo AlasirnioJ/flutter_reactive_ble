@@ -7,6 +7,7 @@ abstract class ArgsToProtobufConverter {
     String id,
     Map<Uuid, List<Uuid>>? servicesWithCharacteristicsToDiscover,
     Duration? connectionTimeout,
+    String? pin,
   );
 
   pb.DisconnectFromDeviceRequest createDisconnectDeviceArgs(String deviceId);
@@ -62,9 +63,14 @@ class ArgsToProtobufConverterImpl implements ArgsToProtobufConverter {
     String id,
     Map<Uuid, List<Uuid>>? servicesWithCharacteristicsToDiscover,
     Duration? connectionTimeout,
+    String? pin,
   ) {
-    final args = pb.ConnectToDeviceRequest()..deviceId = id;
-
+    var args = pb.ConnectToDeviceRequest()..deviceId = id;
+    if (pin != null) {
+      args.pin = pin;
+    }
+    print("ConnectToDeviceArgs===");
+    print(args);
     if (connectionTimeout != null) {
       args.timeoutInMs = connectionTimeout.inMilliseconds;
     }

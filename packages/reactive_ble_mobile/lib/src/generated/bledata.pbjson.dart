@@ -61,6 +61,10 @@ const ConnectToDeviceRequest$json = {
     {'1': 'deviceId', '3': 1, '4': 1, '5': 9, '10': 'deviceId'},
     {'1': 'servicesWithCharacteristicsToDiscover', '3': 2, '4': 1, '5': 11, '6': '.ServicesWithCharacteristics', '10': 'servicesWithCharacteristicsToDiscover'},
     {'1': 'timeoutInMs', '3': 3, '4': 1, '5': 5, '10': 'timeoutInMs'},
+    {'1': 'pin', '3': 4, '4': 1, '5': 9, '9': 0, '10': 'pin', '17': true},
+  ],
+  '8': [
+    {'1': '_pin'},
   ],
 };
 
@@ -69,7 +73,8 @@ final $typed_data.Uint8List connectToDeviceRequestDescriptor = $convert.base64De
     'ChZDb25uZWN0VG9EZXZpY2VSZXF1ZXN0EhoKCGRldmljZUlkGAEgASgJUghkZXZpY2VJZBJyCi'
     'VzZXJ2aWNlc1dpdGhDaGFyYWN0ZXJpc3RpY3NUb0Rpc2NvdmVyGAIgASgLMhwuU2VydmljZXNX'
     'aXRoQ2hhcmFjdGVyaXN0aWNzUiVzZXJ2aWNlc1dpdGhDaGFyYWN0ZXJpc3RpY3NUb0Rpc2Nvdm'
-    'VyEiAKC3RpbWVvdXRJbk1zGAMgASgFUgt0aW1lb3V0SW5Ncw==');
+    'VyEiAKC3RpbWVvdXRJbk1zGAMgASgFUgt0aW1lb3V0SW5NcxIVCgNwaW4YBCABKAlIAFIDcGlu'
+    'iAEBQgYKBF9waW4=');
 
 @$core.Deprecated('Use deviceInfoDescriptor instead')
 const DeviceInfo$json = {

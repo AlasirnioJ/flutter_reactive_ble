@@ -230,6 +230,7 @@ class ConnectToDeviceRequest extends $pb.GeneratedMessage {
     $core.String? deviceId,
     ServicesWithCharacteristics? servicesWithCharacteristicsToDiscover,
     $core.int? timeoutInMs,
+    $core.String? pin,
   }) {
     final $result = create();
     if (deviceId != null) {
@@ -241,6 +242,9 @@ class ConnectToDeviceRequest extends $pb.GeneratedMessage {
     if (timeoutInMs != null) {
       $result.timeoutInMs = timeoutInMs;
     }
+    if (pin != null) {
+      $result.pin = pin;
+    }
     return $result;
   }
   ConnectToDeviceRequest._() : super();
@@ -251,6 +255,7 @@ class ConnectToDeviceRequest extends $pb.GeneratedMessage {
     ..aOS(1, _omitFieldNames ? '' : 'deviceId', protoName: 'deviceId')
     ..aOM<ServicesWithCharacteristics>(2, _omitFieldNames ? '' : 'servicesWithCharacteristicsToDiscover', protoName: 'servicesWithCharacteristicsToDiscover', subBuilder: ServicesWithCharacteristics.create)
     ..a<$core.int>(3, _omitFieldNames ? '' : 'timeoutInMs', $pb.PbFieldType.O3, protoName: 'timeoutInMs')
+    ..aOS(4, _omitFieldNames ? '' : 'pin')
     ..hasRequiredFields = false
   ;
 
@@ -303,6 +308,15 @@ class ConnectToDeviceRequest extends $pb.GeneratedMessage {
   $core.bool hasTimeoutInMs() => $_has(2);
   @$pb.TagNumber(3)
   void clearTimeoutInMs() => clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.String get pin => $_getSZ(3);
+  @$pb.TagNumber(4)
+  set pin($core.String v) { $_setString(3, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasPin() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearPin() => clearField(4);
 }
 
 class DeviceInfo extends $pb.GeneratedMessage {

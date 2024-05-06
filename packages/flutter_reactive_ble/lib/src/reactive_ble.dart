@@ -285,6 +285,7 @@ class FlutterReactiveBle {
     required String id,
     Map<Uuid, List<Uuid>>? servicesWithCharacteristicsToDiscover,
     Duration? connectionTimeout,
+    String? pin,
   }) =>
       initialize().asStream().asyncExpand(
             (_) => _deviceConnector.connect(
@@ -292,6 +293,7 @@ class FlutterReactiveBle {
               servicesWithCharacteristicsToDiscover:
                   servicesWithCharacteristicsToDiscover,
               connectionTimeout: connectionTimeout,
+              pin: pin,
             ),
           );
 

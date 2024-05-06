@@ -1,11 +1,16 @@
 package com.signify.hue.flutterreactiveble.ble
 
 import android.annotation.SuppressLint
+import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothDevice.BOND_BONDING
 import android.bluetooth.BluetoothGattCharacteristic
+import android.content.BroadcastReceiver
 import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.os.Build
 import android.os.ParcelUuid
+import android.util.Log
 import androidx.annotation.VisibleForTesting
 import com.polidea.rxandroidble2.LogConstants
 import com.polidea.rxandroidble2.LogOptions
@@ -39,6 +44,7 @@ import kotlin.collections.component2
 open class ReactiveBleClient(private val context: Context) : BleClient {
     private val connectionQueue = ConnectionQueue()
     private val allConnections = CompositeDisposable()
+    private var localPin: String? = null
 
     companion object {
         // this needs to be in companion update since background isolates respawn the event channels
@@ -106,7 +112,14 @@ open class ReactiveBleClient(private val context: Context) : BleClient {
     override fun connectToDevice(
         deviceId: String,
         timeout: Duration,
+        pin: String?,
     ) {
+        Log.i("moromoro", pin.toString());
+        if (pin != null) {
+            localPin = pin
+            val filter = IntentFilter(BluetoothDevice.ACTION_PAIRING_REQUEST)
+            context.registerReceiver(pairingRequestReceiver, filter)
+        }
         allConnections.add(
             getConnection(deviceId, timeout)
                 .subscribe({ result ->
@@ -410,6 +423,24 @@ open class ReactiveBleClient(private val context: Context) : BleClient {
     override fun autoPairDevice(deviceId: String, pin: String): Boolean {
         val device = rxBleClient.getBleDevice(deviceId)
         return device.bluetoothDevice.setPin(pin.toByteArray())
+    }
+    @SuppressLint("MissingPermission")
+    private val pairingRequestReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent) {
+            if (BluetoothDevice.ACTION_PAIRING_REQUEST == intent.action) {
+                val device: BluetoothDevice? = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE)
+                val type: Int = intent.getIntExtra(BluetoothDevice.EXTRA_PAIRING_VARIANT, BluetoothDevice.ERROR)
+
+                if (type == BluetoothDevice.PAIRING_VARIANT_PIN) {
+                    // Step 4: Use setPin method to set the PIN
+                    // Your known PIN here
+                    device?.setPin(localPin?.toByteArray())
+
+                    // Optionally, you can abort the broadcast to prevent other receivers from processing it
+                    abortBroadcast()
+                }
+            }
+        }
     }
 }
 

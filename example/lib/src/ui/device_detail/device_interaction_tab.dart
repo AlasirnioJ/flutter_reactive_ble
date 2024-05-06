@@ -63,7 +63,7 @@ class DeviceInteractionViewModel extends $DeviceInteractionViewModel {
       connectionStatus == DeviceConnectionState.connected;
 
   void connect() {
-    deviceConnector.connect(deviceId);
+    deviceConnector.connect(deviceId, '828174');
   }
 
   void disconnect() {

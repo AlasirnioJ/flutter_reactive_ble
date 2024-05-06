@@ -25,6 +25,7 @@ interface BleClient {
     fun connectToDevice(
         deviceId: String,
         timeout: Duration,
+        pin: String?,
     )
 
     fun disconnectDevice(deviceId: String)
