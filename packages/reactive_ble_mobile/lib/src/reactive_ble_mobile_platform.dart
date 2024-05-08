@@ -251,20 +251,6 @@ class ReactiveBleMobilePlatform extends ReactiveBlePlatform {
   }
 
   @override
-  Future<int> requestMtuSizeDemo(String deviceId, int? mtu) async {
-    _logger?.log(
-        '===DEMO=== Request mtu size for device: $deviceId with mtuSize: $mtu');
-    return _bleMethodChannel
-        .invokeMethod<List<int>>(
-          "negotiateMtuSize",
-          _argsToProtobufConverter
-              .createNegotiateMtuRequest(deviceId, mtu!)
-              .writeToBuffer(),
-        )
-        .then((data) => _protobufConverter.mtuSizeFrom(data!));
-  }
-
-  @override
   Future<ConnectionPriorityInfo> requestConnectionPriority(
       String deviceId, ConnectionPriority priority) {
     _logger?.log(
@@ -328,20 +314,6 @@ class ReactiveBleMobilePlatform extends ReactiveBlePlatform {
             .writeToBuffer(),
       )
       .then((data) => _protobufConverter.readRssiResultFrom(data!));
-
-  @override
-  Future<bool> autoPairDevice(String deviceId, String pin) {
-    _logger?.log('Auto pair device: $deviceId with pin: $pin');
-    return _bleMethodChannel
-        .invokeMethod<List<int>>(
-          "autoPairDevice",
-          _argsToProtobufConverter
-              .createAutoPairDeviceRequest(deviceId, pin)
-              .writeToBuffer(),
-        )
-        .then(
-            (value) => _protobufConverter.readAutoPairDeviceResultFrom(value!));
-  }
 }
 
 class ReactiveBleMobilePlatformFactory {

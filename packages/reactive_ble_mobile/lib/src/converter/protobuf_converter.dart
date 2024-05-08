@@ -27,7 +27,6 @@ abstract class ProtobufConverter {
   List<DiscoveredService> discoveredServicesFrom(List<int> data);
 
   int readRssiResultFrom(List<int> data);
-  bool readAutoPairDeviceResultFrom(List<int> data);
 }
 
 class ProtobufConverterImpl implements ProtobufConverter {
@@ -204,10 +203,6 @@ class ProtobufConverterImpl implements ProtobufConverter {
   @override
   int readRssiResultFrom(List<int> data) =>
       pb.ReadRssiResult.fromBuffer(data).rssi;
-
-  @override
-  bool readAutoPairDeviceResultFrom(List<int> data) =>
-      pb.AutoPairDeviceResult.fromBuffer(data).result;
 
   DiscoveredService _convertService(pb.DiscoveredService service) =>
       DiscoveredService(

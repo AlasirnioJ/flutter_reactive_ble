@@ -420,11 +420,6 @@ open class ReactiveBleClient(private val context: Context) : BleClient {
             )
 
     @SuppressLint("MissingPermission")
-    override fun autoPairDevice(deviceId: String, pin: String): Boolean {
-        val device = rxBleClient.getBleDevice(deviceId)
-        return device.bluetoothDevice.setPin(pin.toByteArray())
-    }
-    @SuppressLint("MissingPermission")
     private val pairingRequestReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent) {
             if (BluetoothDevice.ACTION_PAIRING_REQUEST == intent.action) {
@@ -434,6 +429,7 @@ open class ReactiveBleClient(private val context: Context) : BleClient {
                 if (type == BluetoothDevice.PAIRING_VARIANT_PIN) {
                     // Step 4: Use setPin method to set the PIN
                     // Your known PIN here
+                    print(localPin?.toByteArray())
                     device?.setPin(localPin?.toByteArray())
 
                     // Optionally, you can abort the broadcast to prevent other receivers from processing it

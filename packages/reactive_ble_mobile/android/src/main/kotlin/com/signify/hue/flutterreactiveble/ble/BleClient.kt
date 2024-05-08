@@ -76,5 +76,4 @@ interface BleClient {
 
     fun readRssi(deviceId: String): Single<Int>
 
-    fun autoPairDevice(deviceId: String, pin: String): Boolean
 }

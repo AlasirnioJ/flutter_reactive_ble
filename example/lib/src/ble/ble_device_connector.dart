@@ -64,9 +64,4 @@ class BleDeviceConnector extends ReactiveState<ConnectionStateUpdate> {
     final result = await _ble.readCharacteristic(characteristic);
     print(result);
   }
-
-  Future<void> autoPairDevice(String deviceId, String pin) async {
-    final result = await _ble.autoPairDevice(deviceId: deviceId, pin: pin);
-    print(result);
-  }
 }

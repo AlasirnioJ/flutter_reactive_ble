@@ -23,7 +23,6 @@ abstract class ConnectedDeviceOperation {
   );
 
   Future<int> requestMtu(String deviceId, int mtu);
-  Future<int> requestMtuDemo(String deviceId, int mtu);
   Future<List<DiscoveredService>> discoverServices(String deviceId);
 
   Future<List<DiscoveredService>> getDiscoverServices(String deviceId);
@@ -101,10 +100,6 @@ class ConnectedDeviceOperationImpl implements ConnectedDeviceOperation {
   @override
   Future<int> requestMtu(String deviceId, int mtu) async =>
       _blePlatform.requestMtuSize(deviceId, mtu);
-
-  @override
-  Future<int> requestMtuDemo(String deviceId, int mtu) async =>
-      _blePlatform.requestMtuSizeDemo(deviceId, mtu);
 
   @override
   Future<List<DiscoveredService>> discoverServices(String deviceId) =>

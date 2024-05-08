@@ -63,7 +63,7 @@ class DeviceInteractionViewModel extends $DeviceInteractionViewModel {
       connectionStatus == DeviceConnectionState.connected;
 
   void connect() {
-    deviceConnector.connect(deviceId, '828174');
+    deviceConnector.connect(deviceId, null);
   }
 
   void disconnect() {
@@ -72,10 +72,6 @@ class DeviceInteractionViewModel extends $DeviceInteractionViewModel {
 
   void readStatus() {
     deviceConnector.readStatus(deviceId);
-  }
-
-  void autoPair(String pin) {
-    final result = deviceConnector.autoPairDevice(deviceId, pin);
   }
 }
 
@@ -184,11 +180,6 @@ class _DeviceInteractionTabState extends State<_DeviceInteractionTab> {
                               ? widget.viewModel.readStatus
                               : null,
                           child: const Text("Read status")),
-                      ElevatedButton(
-                          onPressed: widget.viewModel.deviceConnected
-                              ? () => widget.viewModel.autoPair('828174')
-                              : null,
-                          child: const Text("Auto pair")),
                     ],
                   ),
                 ),

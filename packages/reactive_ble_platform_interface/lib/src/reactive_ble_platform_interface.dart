@@ -182,11 +182,6 @@ abstract class ReactiveBlePlatform extends PlatformInterface {
     throw UnimplementedError('requestMtuSize has not been implemented.');
   }
 
-  Future<int> requestMtuSizeDemo(String deviceId, int? mtu) {
-    throw UnimplementedError(
-        '=====requestMtuSizeDemo========= has not been implemented.');
-  }
-
   /// Requests for a connection parameter update on the connected device.
   ///
   /// This operation is specific to the Android ecosystem and should not be
@@ -195,11 +190,6 @@ abstract class ReactiveBlePlatform extends PlatformInterface {
       String deviceId, ConnectionPriority priority) {
     throw UnimplementedError(
         'requestConnectionPriority has not been implemented.');
-  }
-
-  // pairs device automatically when the pin is known
-  Future<bool> autoPairDevice(String deviceId, String pin) {
-    throw UnimplementedError('autoPairDevice has not been implemented.');
   }
 }
 

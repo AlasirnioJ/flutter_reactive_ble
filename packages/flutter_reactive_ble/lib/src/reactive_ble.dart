@@ -219,20 +219,6 @@ class FlutterReactiveBle {
     return _connectedDeviceOperator.requestMtu(deviceId, mtu);
   }
 
-  Future<int> requestMtuDemo(String s,
-      {required String deviceId, required int mtu}) async {
-    await initialize();
-    return _connectedDeviceOperator.requestMtuDemo(deviceId, mtu);
-  }
-
-  Future<bool> autoPairDevice(
-      {required String deviceId, required String pin}) async {
-    await initialize();
-    var res = await _blePlatform.autoPairDevice(deviceId, pin);
-    print(res.toString());
-    return res;
-  }
-
   /// Requests for a connection parameter update on the connected device.
   ///
   /// Always completes with an error on iOS, as there is no way (and no need) to perform this operation on iOS.
@@ -281,6 +267,7 @@ class FlutterReactiveBle {
   /// On Android when no timeout is specified the `autoConnect` flag is set in the
   /// [connectGatt()](https://developer.android.com/reference/android/bluetooth/BluetoothDevice#connectGatt(android.content.Context,%20boolean,%20android.bluetooth.BluetoothGattCallback))
   /// call, otherwise it is cleared.
+  /// if [pin] is provided the device will be paired automatically on android.
   Stream<ConnectionStateUpdate> connectToDevice({
     required String id,
     Map<Uuid, List<Uuid>>? servicesWithCharacteristicsToDiscover,
