@@ -50,9 +50,6 @@ abstract class ArgsToProtobufConverter {
   pb.DiscoverServicesRequest createDiscoverServicesRequest(String deviceId);
 
   pb.ReadRssiRequest createReadRssiRequest(String deviceId);
-
-  pb.AutoPairDeviceRequest createAutoPairDeviceRequest(
-      String deviceId, String pin);
 }
 
 class ArgsToProtobufConverterImpl implements ArgsToProtobufConverter {
@@ -221,15 +218,6 @@ class ArgsToProtobufConverterImpl implements ArgsToProtobufConverter {
   @override
   pb.ReadRssiRequest createReadRssiRequest(String deviceId) {
     final args = pb.ReadRssiRequest()..deviceId = deviceId;
-    return args;
-  }
-
-  @override
-  pb.AutoPairDeviceRequest createAutoPairDeviceRequest(
-      String deviceId, String pin) {
-    final args = pb.AutoPairDeviceRequest()
-      ..deviceId = deviceId
-      ..pin = pin;
     return args;
   }
 }

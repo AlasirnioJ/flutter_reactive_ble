@@ -27,8 +27,6 @@ class DeviceListScreen extends StatelessWidget {
       );
 }
 
-var _ble = FlutterReactiveBle();
-
 class _DeviceList extends StatefulWidget {
   const _DeviceList({
     required this.scannerState,
